@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
+
+<table class="table">
+	<thead class="thead-light">
+		<tr align="center">
+			<th>Name</th>
+			<th>City</th>
+			<th>Description</th>
+			<th colspan="2">actions</th>
+		</tr>
+	</thead>
+
+	<c:forEach items="${availableHotels}" var="hotel">
+		<tr align="center">
+			<td>${hotel.name}</td>
+			<td>${hotel.addressCity}</td>
+			<td>${hotel.description}</td>
+			<td><a href="/hotel/view/${hotel.id}"><button type="button" class="btn btn-info">Details</button></a></td>
+			<td><a href="/reservationDate/${hotel.id}/newHotelReservation"><button type="button" class="btn btn-warning">Make reservation</button></a></td>
+		</tr>
+	</c:forEach>
+
+</table>
+

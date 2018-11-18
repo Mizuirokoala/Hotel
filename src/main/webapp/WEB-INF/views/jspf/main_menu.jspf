@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+    <%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ page session="true" %>
+<p>
+
+<c:choose>
+
+	<c:when test="${sessionScope.user != null}">
+		Welcome ${sessionScope.user.name}<BR />
+		<a href="/"><button type="button" class="btn btn-primary">Main page</button></a>
+		<a href="/pet/register"><button type="button" class="btn btn-primary">Create pet profile</button></a>
+		<a href="/pet/show"><button type="button" class="btn btn-primary">Display pet profile</button></a>
+		<a href="/logout"><button type="button" class="btn btn-primary">Logout</button></a>
+	</c:when>
+	
+	<c:when test="${sessionScope.hotel != null}">
+		Welcome ${sessionScope.hotel.name}<BR />
+		<a href="/"><button type="button" class="btn btn-primary">Main page</button></a>
+		<a href="/hotel/showReservation"><button type="button" class="btn btn-primary">Show reservations</button></a>
+		<a href="/logout"><button type="button" class="btn btn-primary">Logout</button></a>
+	</c:when>
+
+	<c:otherwise>
+		<a href="/"><button type="button" class="btn btn-primary">Main page</button></a>
+		<a href="/register"><button type="button" class="btn btn-primary">User Register</button></a>
+		<a href="/login"><button type="button" class="btn btn-primary">User Login</button></a>
+		<a href="/registerHotel"><button type="button" class="btn btn-primary">Hotel Register</button></a>
+		<a href="/loginHotel"><button type="button" class="btn btn-primary">Hotel Login</button></a>
+	</c:otherwise>
+	
+</c:choose>
+</p>

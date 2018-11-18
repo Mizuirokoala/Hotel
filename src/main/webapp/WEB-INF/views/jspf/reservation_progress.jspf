@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
+<p>
+<table class="table">
+	<thead class="thead-light">
+		<tr align="center">
+			<c:choose>
+				<c:when test="${sessionScope.chosenHotel != null}">
+					<th>You have chosen a hotel:</th>
+				</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${sessionScope.chosenDate != null}">
+					<th>You have chosen Dates:</th>
+				</c:when>
+			</c:choose>
+
+			<c:choose>
+
+				<c:when test="${sessionScope.user == null}">
+					<th>Create your pet</th>
+				</c:when>
+
+				<c:when test="${sessionScope.chosenPet != null}">
+					<th>You have chosen your Pet:</th>
+				</c:when>
+				<c:otherwise>
+					<th>Choose your pet</th>
+				</c:otherwise>
+			</c:choose>
+		</tr>
+	</thead>
+	<tr>
+		<c:choose>
+			<c:when test="${sessionScope.chosenHotel != null}">
+				<td>Name: ${sessionScope.chosenHotel.name}<BR /> Address:
+					${sessionScope.chosenHotel.addressStreet},
+					${sessionScope.chosenHotel.addressCity}<BR /> Requirements:
+					${sessionScope.chosenHotel.requirements}<BR />
+				</td>
+			</c:when>
+		</c:choose>
+		<c:choose>
+			<c:when test="${sessionScope.chosenDate != null}">
+				<td><ul>
+						<c:forEach items="${sessionScope.chosenDate}" var="date">
+							<li>${date.day}${date.month.name}${date.year}</li>
+						</c:forEach>
+					</ul></td>
+			</c:when>
+		</c:choose>
+
+		<c:choose>
+
+			<c:when
+				test="${(sessionScope.user == null) && (sessionScope.chosenPet == null)}">
+				<td><form method="post"
+						action="/reservationDate/quickRegister">
+						Pet's name <input type="text" name="petName"></input>${petNameError}<BR />
+						Pet's category <input type="text" name="petCategory">${categoryError}</input><BR />
+						Your email <input type="text" name="email"></input>${mailError}<BR /><BR />
+						Your password (*optional if you want to be able to log in future)<BR />
+						<input type="password" name="userPassword"></input><BR />
+						<input type="submit" />
+					</form></td>
+			</c:when>
+		</c:choose>
+
+		<c:choose>
+			<c:when test="${sessionScope.chosenPet != null}">
+				<td align="center">${sessionScope.chosenPet.name}<BR />
+				</td>
+			</c:when>
+			<c:when
+				test="${(sessionScope.chosenPet == null) and (sessionScope.user != null)}">
+				<td align="center"><c:forEach items="${sessionScope.user.pet}"
+						var="pet">
+						<a href="/reservationDate/${pet.id}/pet"><button
+								type="button" class="btn btn-primary">${pet.name}</button></a>
+
+					</c:forEach></td>
+			</c:when>
+		</c:choose>
+
+	</tr>
+	<tr>
+		<c:choose>
+			<c:when test="${sessionScope.chosenHotel != null}">
+				<td align="center"><a
+					href="/reservationDate/hotel/clear">
+						<button type="button" class="btn btn-danger">clear hotel</button>
+				</a></td>
+			</c:when>
+		</c:choose>
+		<c:choose>
+			<c:when test="${sessionScope.chosenDate != null}">
+				<td align="center"><a href="/reservationDate/clear"><button
+							type="button" class="btn btn-danger">clear dates</button></a></td>
+			</c:when>
+		</c:choose>
+
+		<%-- 		<c:choose>
+c
+			<c:when
+				test="${(sessionScope.user == null) && (sessionScope.chosenPet == null)}">
+				<td></td>
+			</c:when>
+		</c:choose> --%>
+
+		<c:choose>
+			<c:when test="${sessionScope.chosenPet != null}">
+				<td align="center"><a
+					href="/reservationDate/pet/clear"><button
+							type="button" class="btn btn-danger">clear pet</button></a></td>
+			</c:when>
+			<c:otherwise>
+				<td></td>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when
+				test="${(sessionScope.chosenPet != null) and (sessionScope.chosenDate != null) and (sessionScope.chosenHotel != null)}">
+				<tr>
+					<td colspan="3" align="center"><a
+						href="/reservationDate/confirm"><button
+								type="button" class="btn btn-primary">Confirm
+								reservation :)</button></a> ${repetPetMessage} <c:forEach
+							items="${repetPetDates}" var="date">
+		${date.day} ${date.month.name} ${date.year}
+		</c:forEach></td>
+				</tr>
+			</c:when>
+		</c:choose>
+	</tr>
+</table>
+</p>

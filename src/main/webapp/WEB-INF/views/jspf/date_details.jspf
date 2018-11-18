@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
+
+<c:choose>
+	<c:when test="${hotelDate != null}">
+		<table class="table">
+			<thead class="thead-light">
+				<tr align="center">
+					<th>Date</th>
+					<th>Capacity left</th>
+					<th>Pets on this day</th>
+				</tr>
+			</thead>
+			<tr align="center" valign="middle">
+				<td valign="middle"><h5>${hotelDate.day}<BR />${hotelDate.month.name}<br/>${hotelDate.year}</h5></td>
+				<td><a
+					href="/hotel/showReservations/${hotelDate.id}/changeCapacityUp"><button
+							type="button" class="btn btn-primary">increase</button></a>
+					<h3>${hotelDate.placesLeft}</h3><a
+					href="/hotel/showReservations/${hotelDate.id}/changeCapacityDown"><button
+							type="button" class="btn btn-primary">decrase</button></a><BR /></td>
+				<td><c:forEach items="${hotelDate.pet}" var="pet">
+						<a href="/hotel/showPet/${pet.id}"><button
+								type="button" class="btn btn-primary">${pet.name},
+								${pet.category}</button></a><a href="/reservationDate/removePetHotel/${hotelDate.id}/${pet.id}"><button type="button" class="btn btn-danger">erase reservation</button></a>
+						<BR />
+					</c:forEach></td>
+			</tr>
+		</table>
+		Date details
+	</c:when>
+</c:choose>
