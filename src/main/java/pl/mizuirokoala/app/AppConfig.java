@@ -27,6 +27,7 @@ import org.springframework.web.servlet.view.JstlView;
 import pl.mizuirokoala.conventer.HotelConverter;
 import pl.mizuirokoala.conventer.PetConverter;
 
+//Testing
 
 @Configuration
 @ComponentScan(basePackages = {"pl.mizuirokoala.bean", "pl.mizuirokoala.controller", "pl.mizuirokoala.entity", "pl.mizuirokoala.repository"})
