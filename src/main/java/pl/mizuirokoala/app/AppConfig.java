@@ -28,6 +28,7 @@ import pl.mizuirokoala.conventer.HotelConverter;
 import pl.mizuirokoala.conventer.PetConverter;
 
 //Testing
+//test again
 
 @Configuration
 @ComponentScan(basePackages = {"pl.mizuirokoala.bean", "pl.mizuirokoala.controller", "pl.mizuirokoala.entity", "pl.mizuirokoala.repository"})
