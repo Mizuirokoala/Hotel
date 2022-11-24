@@ -13,7 +13,7 @@
 		<java.compiler.source>1.8</java.compiler.source>
 		<java.compiler.target>1.8</java.compiler.target>
 		<org.springframework-version>4.3.9.RELEASE</org.springframework-version>
-		<org.hibernate-version>5.2.9.Final</org.hibernate-version>
+		<org.hibernate-version>5.3.20.Final</org.hibernate-version>
 
 	</properties>
 
